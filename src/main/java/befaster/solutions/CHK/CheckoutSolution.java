@@ -88,16 +88,11 @@ public class CheckoutSolution {
 
         for (String c: skus.split("")){
             if(!priceList.containsKey(c)) return -1;
-
-            if(quantities.containsKey(c)){
-                quantities.put(c, quantities.get(c) + 1);
-            } else {
-                quantities.put(c, 1);
-            }
+            quantities.put(c, quantities.getOrDefault(c, 0) + 1);
         }
 
         int total = 0;
-        int freeB = 0;
+        Map<String, Integer> freeItemsCount = new HashMap<>();
 
         if (quantities.containsKey("E")) {
             Integer e = quantities.remove("E");
@@ -139,6 +134,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
