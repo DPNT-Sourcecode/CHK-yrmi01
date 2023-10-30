@@ -22,5 +22,10 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("ABCD"), equalTo(115));
         assertThat(checkoutSolution.checkout("ABCDE"), equalTo(155));
         assertThat(checkoutSolution.checkout("ABCDEE"), equalTo(165));
+        assertThat(checkoutSolution.checkout("ABCDEF"), equalTo(165));
+        assertThat(checkoutSolution.checkout("ABCDEFF"), equalTo(175));
+        assertThat(checkoutSolution.checkout("ABCDEFFF"), equalTo(175));
+
     }
 }
+

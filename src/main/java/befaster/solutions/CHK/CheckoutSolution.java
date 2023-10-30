@@ -48,6 +48,11 @@ public class CheckoutSolution {
                 case "D":
                     total += quantity * 15;
                     break;
+                case "F":
+                    int BuyTwoGetOneFree = quantity / 3;
+                    int singleF = quantity % 3;
+                    total += (BuyTwoGetOneFree * 20) + (singleF * 10);
+                    break;
                 default:
                     return -1;
             }
@@ -56,3 +61,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
