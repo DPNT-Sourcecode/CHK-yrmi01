@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //| A    | 50    | 3A for 130, 5A for 200 |
@@ -33,10 +34,11 @@ import java.util.Map;
 public class CheckoutSolution {
 
     Map<String, Integer> priceList;
-    Map<String, Offer> offers;
+    Map<String, List<Offer>> offers;
 
     public CheckoutSolution() {
         this.priceList = new HashMap<>();
+        this.offers = new HashMap<>();
         priceList.put("A", 50);
         priceList.put("B", 30);
         priceList.put("C", 20);
@@ -87,7 +89,9 @@ public class CheckoutSolution {
 //| U    | 40    | 3U get one U free      |
 //| V    | 50    | 2V for 90, 3V for 130  |
 
-        offers.put("A", new Offer(3, 130));
+        offers.put("A", List.of(new Offer(5, 200), new Offer(3, 130)));
+        offers.put("B", List.of(new Offer(2, 45)));
+        offers.put("E", List.of(new Offer(2, 45)));
     }
 
     public Integer checkout(String skus) {
@@ -145,5 +149,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
