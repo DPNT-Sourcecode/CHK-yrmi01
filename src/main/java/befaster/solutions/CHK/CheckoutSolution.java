@@ -82,25 +82,26 @@ public class CheckoutSolution {
     }
 
     public Integer checkout(String skus) {
-        if(skus.isEmpty() || skus.isBlank()) return 0;
+        if (skus.isEmpty() || skus.isBlank()) return 0;
 
         Map<String, Integer> quantities = new HashMap<>();
 
-        for (String c: skus.split("")){
-            if(!priceList.containsKey(c)) return -1;
+        for (String c : skus.split("")) {
+            if (!priceList.containsKey(c)) return -1;
             quantities.put(c, quantities.getOrDefault(c, 0) + 1);
         }
 
         int total = 0;
         Map<String, Integer> freeItemsCount = new HashMap<>();
 
-        for(Map.Entry<String, Integer> e: quantities.entrySet()) {
-            int quantity = e.getValue();
-            int price = priceList.get(e.getKey());
+        for (Map.Entry<String, Integer> entry : quantities.entrySet()) {
+            String key = entry.getKey();
+            int quantity = entry.getValue();
+            int price = priceList.get(key);
 
             while (quantity > 0) {
-                if(offers.containsKey(e.getKey())) {
-                    for(Offer offer: offers.get(e.getKey())){
+                if (offers.containsKey(key)) {
+                    for (Offer offer : offers.get(key)) {
                         int offerQuantity = offer.getCount();
                         int offerPrice = offer.getPrice();
 
@@ -109,22 +110,20 @@ public class CheckoutSolution {
                             total += eligibleOffers * offerPrice;
                             quantity -= eligibleOffers * offerQuantity;
 
-                            if(offer.getFreeItem() != null) {
+                            if (offer.getFreeItem() != null) {
                                 String freeItem = offer.getFreeItem();
-                                freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + 1);
+                                freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + eligibleOffers);
                             }
                         }
                     }
-
                 } else {
                     total += quantity * price;
                     quantity = 0;
                 }
             }
-
         }
 
-        for (Map.Entry<String, Integer> item: freeItemsCount.entrySet()) {
+        for (Map.Entry<String, Integer> item : freeItemsCount.entrySet()) {
             if (quantities.containsKey(item.getKey())) {
                 total -= item.getValue() * priceList.get(item.getKey());
             }
@@ -133,8 +132,3 @@ public class CheckoutSolution {
         return total;
     }
 }
-
-
-
-
-
