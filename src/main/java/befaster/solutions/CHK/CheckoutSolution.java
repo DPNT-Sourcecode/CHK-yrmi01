@@ -33,6 +33,7 @@ import java.util.Map;
 public class CheckoutSolution {
 
     Map<String, SKU> priceList;
+    Map<String, Offer> offers;
 
     public CheckoutSolution() {
         this.priceList = new HashMap<>();
@@ -119,3 +120,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
