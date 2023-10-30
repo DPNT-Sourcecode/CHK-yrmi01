@@ -32,37 +32,62 @@ import java.util.Map;
 
 public class CheckoutSolution {
 
-    Map<String, SKU> priceList;
+    Map<String, Integer> priceList;
     Map<String, Offer> offers;
 
     public CheckoutSolution() {
         this.priceList = new HashMap<>();
-        priceList.put("A", new SKU("A", 50, false));
-        priceList.put("B", new SKU("B", 30, false));
-        priceList.put("C", new SKU("C", 20, false));
-        priceList.put("D", new SKU("D", 15, false));
-        priceList.put("E", new SKU("E", 40, true));
-        priceList.put("F", new SKU("F", 10, false));
-        priceList.put("G", new SKU("G", 20, false));
-        priceList.put("H", new SKU("H", 10, false));
-        priceList.put("I", new SKU("I", 35, false));
-        priceList.put("J", new SKU("J", 60, false));
-        priceList.put("K", new SKU("K", 80, false));
-        priceList.put("L", new SKU("L", 90, false));
-        priceList.put("M", new SKU("M", 15, false));
-        priceList.put("N", new SKU("N", 40, true));
-        priceList.put("O", new SKU("O", 10, false));
-        priceList.put("P", new SKU("P", 50, false));
-        priceList.put("Q", new SKU("Q", 30, false));
-        priceList.put("R", new SKU("R", 50, true));
-        priceList.put("S", new SKU("S", 30, false));
-        priceList.put("T", new SKU("T", 20, false));
-        priceList.put("U", new SKU("U", 40, false));
-        priceList.put("V", new SKU("V", 50, false));
-        priceList.put("W", new SKU("W", 20, false));
-        priceList.put("X", new SKU("X", 90, false));
-        priceList.put("Y", new SKU("Y", 10, false));
-        priceList.put("Z", new SKU("Z", 50, false));
+        priceList.put("A", 50);
+        priceList.put("B", 30);
+        priceList.put("C", 20);
+        priceList.put("D", 15);
+        priceList.put("E", 40);
+        priceList.put("F", 10);
+        priceList.put("G", 20);
+        priceList.put("H", 10);
+        priceList.put("I", 35);
+        priceList.put("J", 60);
+        priceList.put("K", 80);
+        priceList.put("L", 90);
+        priceList.put("M", 15);
+        priceList.put("N", 40);
+        priceList.put("O", 10);
+        priceList.put("P", 50);
+        priceList.put("Q", 30);
+        priceList.put("R", 50);
+        priceList.put("S", 30);
+        priceList.put("T", 20);
+        priceList.put("U", 40);
+        priceList.put("V", 50);
+        priceList.put("W", 20);
+        priceList.put("X", 90);
+        priceList.put("Y", 10);
+        priceList.put("Z", 50);
+
+//        | A    | 50    | 3A for 130, 5A for 200 |
+//| B    | 30    | 2B for 45              |
+//| C    | 20    |                        |
+//| D    | 15    |                        |
+//| E    | 40    | 2E get one B free      |
+//| F    | 10    | 2F get one F free      |
+//| G    | 20    |                        |
+//| H    | 10    | 5H for 45, 10H for 80  |
+//| I    | 35    |                        |
+//| J    | 60    |                        |
+//| K    | 80    | 2K for 150             |
+//| L    | 90    |                        |
+//| M    | 15    |                        |
+//| N    | 40    | 3N get one M free      |
+//| O    | 10    |                        |
+//| P    | 50    | 5P for 200             |
+//| Q    | 30    | 3Q for 80              |
+//| R    | 50    | 3R get one Q free      |
+//| S    | 30    |                        |
+//| T    | 20    |                        |
+//| U    | 40    | 3U get one U free      |
+//| V    | 50    | 2V for 90, 3V for 130  |
+
+        offers.put("A", new Offer(3, 130));
     }
 
     public Integer checkout(String skus) {
@@ -120,4 +145,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
