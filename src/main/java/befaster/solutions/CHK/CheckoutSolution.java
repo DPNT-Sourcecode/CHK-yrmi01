@@ -104,9 +104,15 @@ public class CheckoutSolution {
                         int offerQuantity = offer.getCount();
                         int offerPrice = offer.getPrice();
 
-                        if(offer.getFreeItem() != null) {
-                            String freeItem = offer.getFreeItem();
-                            freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + 1);
+                        if (quantity >= offerQuantity) {
+                            int eligibleOffers = quantity / offerQuantity;
+                            total += eligibleOffers * offerPrice;
+                            quantity -= eligibleOffers * offerQuantity;
+
+                            if(offer.getFreeItem() != null) {
+                                String freeItem = offer.getFreeItem();
+                                freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + 1);
+                            }
                         }
                     }
 
@@ -118,9 +124,21 @@ public class CheckoutSolution {
 
         }
 
+        for (Map.Entry<String, Integer> item: freeItemsCount.entrySet()) {
+            if (quantities.containsKey(item.getKey())) {
+                Integer numberOrdered = quantities.get(item.getKey());
+                total -= item.getValue() * priceList.get(item.getKey());
+                
+
+            }
+        }
+
+
+
         return total;
     }
 }
+
 
 
 
