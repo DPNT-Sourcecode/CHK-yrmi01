@@ -106,7 +106,7 @@ public class CheckoutSolution {
 
                         if(offer.getFreeItem() != null) {
                             String freeItem = offer.getFreeItem();
-                            freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + offerQuantity);
+                            freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + 1);
                         }
                     }
 
@@ -121,5 +121,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
