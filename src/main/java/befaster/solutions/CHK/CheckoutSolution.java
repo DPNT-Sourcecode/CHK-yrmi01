@@ -126,18 +126,14 @@ public class CheckoutSolution {
 
         for (Map.Entry<String, Integer> item: freeItemsCount.entrySet()) {
             if (quantities.containsKey(item.getKey())) {
-                Integer numberOrdered = quantities.get(item.getKey());
                 total -= item.getValue() * priceList.get(item.getKey());
-                
-
             }
         }
-
-
 
         return total;
     }
 }
+
 
 
 
