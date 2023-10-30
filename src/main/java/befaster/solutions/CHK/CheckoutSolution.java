@@ -100,6 +100,7 @@ public class CheckoutSolution {
             int price = priceList.get(key);
 
             while (quantity > 0) {
+                System.out.println("looping: " + quantity);
                 if (offers.containsKey(key)) {
                     for (Offer offer : offers.get(key)) {
                         int offerQuantity = offer.getCount();
@@ -132,3 +133,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
