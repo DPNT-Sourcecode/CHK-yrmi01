@@ -8,7 +8,7 @@ import java.util.Map;
 public class CheckoutSolution {
     public Integer checkout(String skus) {
         if(skus.isEmpty() || skus.isBlank()) return 0;
-        
+
         Map<String, Integer> skuToQuantity = new HashMap<>();
         for (String c: skus.split("")){
             if(skuToQuantity.containsKey(c)){
@@ -19,24 +19,34 @@ public class CheckoutSolution {
         }
 
         int total = 0;
+        int freeB = 0;
+
+        if (skuToQuantity.containsKey("E")) {
+            Integer e = skuToQuantity.remove("E");
+            total += (e * 40);
+            freeB += e/2;
+        }
 
         for(Map.Entry<String, Integer> e: skuToQuantity.entrySet()) {
+            Integer quantity = e.getValue();
             switch (e.getKey()){
                 case "A":
-                    int multiBuy = e.getValue() / 3;
-                    int single = e.getValue() % 3;
-                    total += (multiBuy * 130) + (single * 50);
+                    int multiBuyFive = quantity / 5;
+                    int multiBuyThree = (quantity % 5) / 3;
+                    int single = (quantity % 5) % 3;
+                    total += (multiBuyFive * 200) + (multiBuyThree * 130) + (single * 50);
                     break;
                 case "B":
-                    int multiBuyB = e.getValue() / 2;
-                    int singleB = e.getValue() % 2;
+                    int afterEMultiBuyPromotion = quantity - freeB;
+                    int multiBuyB = afterEMultiBuyPromotion / 2;
+                    int singleB = afterEMultiBuyPromotion % 2;
                     total += (multiBuyB * 45) + (singleB * 30);
                     break;
                 case "C":
-                    total += e.getValue() * 20;
+                    total += quantity * 20;
                     break;
                 case "D":
-                    total += e.getValue() * 15;
+                    total += quantity * 15;
                     break;
                 default:
                     return -1;
@@ -46,5 +56,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
