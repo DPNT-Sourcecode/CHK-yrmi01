@@ -102,10 +102,11 @@ public class CheckoutSolution {
             while (quantity > 0) {
                 System.out.println("looping: " + quantity);
                 if (offers.containsKey(key)) {
+                    System.out.println("checking key: " + key);
                     for (Offer offer : offers.get(key)) {
                         int offerQuantity = offer.getCount();
                         int offerPrice = offer.getPrice();
-
+                        System.out.println("offerQuant: " + offerQuantity);
                         if (quantity >= offerQuantity) {
                             int eligibleOffers = quantity / offerQuantity;
                             total += eligibleOffers * offerPrice;
@@ -115,11 +116,11 @@ public class CheckoutSolution {
                                 String freeItem = offer.getFreeItem();
                                 freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + eligibleOffers);
                             }
+                        } else {
+                            total += quantity * price;
+                            quantity = 0;
                         }
                     }
-                } else {
-                    total += quantity * price;
-                    quantity = 0;
                 }
             }
         }
@@ -133,4 +134,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
