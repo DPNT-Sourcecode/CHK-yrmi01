@@ -100,7 +100,19 @@ public class CheckoutSolution {
 
             while (quantity > 0) {
                 if(offers.containsKey(e.getKey())) {
-                    
+                    for(Offer offer: offers.get(e.getKey())){
+                        int offerQuantity = offer.getCount();
+                        int offerPrice = offer.getPrice();
+
+                        if(offer.getFreeItem() != null) {
+                            String freeItem = offer.getFreeItem();
+                            freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + offerQuantity);
+                        }
+                    }
+
+                } else {
+                    total += quantity * price;
+                    quantity = 0;
                 }
             }
 
@@ -109,4 +121,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
