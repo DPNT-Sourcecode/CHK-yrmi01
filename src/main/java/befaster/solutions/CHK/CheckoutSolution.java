@@ -94,46 +94,44 @@ public class CheckoutSolution {
         int total = 0;
         Map<String, Integer> freeItemsCount = new HashMap<>();
 
-        if (quantities.containsKey("E")) {
-            Integer e = quantities.remove("E");
-            total += (e * 40);
-            freeB += e/2;
-        }
-
-        for(Map.Entry<String, Integer> e: quantities.entrySet()) {
-            Integer quantity = e.getValue();
-            switch (e.getKey()){
-                case "A":
-                    int multiBuyFive = quantity / 5;
-                    int multiBuyThree = (quantity % 5) / 3;
-                    int single = (quantity % 5) % 3;
-                    total += (multiBuyFive * 200) + (multiBuyThree * 130) + (single * 50);
-                    break;
-                case "B":
-                    int afterEMultiBuyPromotion = quantity - freeB;
-                    int multiBuyB = afterEMultiBuyPromotion / 2;
-                    int singleB = afterEMultiBuyPromotion % 2;
-                    total += (multiBuyB * 45) + (singleB * 30);
-                    break;
-                case "C":
-                    total += quantity * 20;
-                    break;
-                case "D":
-                    total += quantity * 15;
-                    break;
-                case "F":
-                    int BuyTwoGetOneFree = quantity / 3;
-                    int singleF = quantity % 3;
-                    total += (BuyTwoGetOneFree * 20) + (singleF * 10);
-                    break;
-                default:
-                    return -1;
-            }
-        }
+//        for(Map.Entry<String, Integer> e: quantities.entrySet()) {
+//            if(offers.containsKey(e.getKey())) {
+//
+//            }
+//            Integer quantity = e.getValue();
+//            switch (e.getKey()){
+//                case "A":
+//                    int multiBuyFive = quantity / 5;
+//                    int multiBuyThree = (quantity % 5) / 3;
+//                    int single = (quantity % 5) % 3;
+//                    total += (multiBuyFive * 200) + (multiBuyThree * 130) + (single * 50);
+//                    break;
+//                case "B":
+//                    int afterEMultiBuyPromotion = quantity - freeB;
+//                    int multiBuyB = afterEMultiBuyPromotion / 2;
+//                    int singleB = afterEMultiBuyPromotion % 2;
+//                    total += (multiBuyB * 45) + (singleB * 30);
+//                    break;
+//                case "C":
+//                    total += quantity * 20;
+//                    break;
+//                case "D":
+//                    total += quantity * 15;
+//                    break;
+//                case "F":
+//                    int BuyTwoGetOneFree = quantity / 3;
+//                    int singleF = quantity % 3;
+//                    total += (BuyTwoGetOneFree * 20) + (singleF * 10);
+//                    break;
+//                default:
+//                    return -1;
+//            }
+//        }
 
         return total;
     }
 }
+
 
 
 
