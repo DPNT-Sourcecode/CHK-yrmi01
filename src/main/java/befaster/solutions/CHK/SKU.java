@@ -23,4 +23,3 @@ public class SKU {
         return hasLinkedPromo;
     }
 }
-
