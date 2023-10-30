@@ -7,8 +7,10 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
+        if(skus.isEmpty() || skus.isBlank()) return 0;
+        
         Map<String, Integer> skuToQuantity = new HashMap<>();
-        for (String c: skus.split(",")){
+        for (String c: skus.split("")){
             if(skuToQuantity.containsKey(c)){
                 skuToQuantity.put(c, skuToQuantity.get(c) + 1);
             } else {
@@ -44,4 +46,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
