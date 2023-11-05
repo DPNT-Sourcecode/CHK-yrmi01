@@ -2,46 +2,16 @@ package befaster.solutions.CHK;
 
 import befaster.runner.SolutionNotImplementedException;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
     private Map<Character, Integer> prices;
     private Map<Character, List<Offer>> offers;
     private Map<Character, FreeItemOffer> freeItemOffers;
+    private Set<Character> groupBuy;
 
-//+------+-------+------------------------+
-//| Item | Price | Special offers         |
-//+------+-------+------------------------+
-//| A    | 50    | 3A for 130, 5A for 200 |
-//| B    | 30    | 2B for 45              |
-//| C    | 20    |                        |
-//| D    | 15    |                        |
-//| E    | 40    | 2E get one B free      |
-//| F    | 10    | 2F get one F free      |
-//| G    | 20    |                        |
-//| H    | 10    | 5H for 45, 10H for 80  |
-//| I    | 35    |                        |
-//| J    | 60    |                        |
-//| K    | 80    | 2K for 150             |
-//| L    | 90    |                        |
-//| M    | 15    |                        |
-//| N    | 40    | 3N get one M free      |
-//| O    | 10    |                        |
-//| P    | 50    | 5P for 200             |
-//| Q    | 30    | 3Q for 80              |
-//| R    | 50    | 3R get one Q free      |
-//| S    | 30    |                        |
-//| T    | 20    |                        |
-//| U    | 40    | 3U get one U free      |
-//| V    | 50    | 2V for 90, 3V for 130  |
-//| W    | 20    |                        |
-//| X    | 90    |                        |
-//| Y    | 10    |                        |
-//| Z    | 50    |                        |
-//+------+-------+------------------------+
 
     public CheckoutSolution() {
         prices = new HashMap<>();
@@ -55,7 +25,7 @@ public class CheckoutSolution {
         prices.put('H', 10);
         prices.put('I', 35);
         prices.put('J', 60);
-        prices.put('K', 80);
+        prices.put('K', 70);
         prices.put('L', 90);
         prices.put('M', 15);
         prices.put('N', 40);
@@ -63,21 +33,21 @@ public class CheckoutSolution {
         prices.put('P', 50);
         prices.put('Q', 30);
         prices.put('R', 50);
-        prices.put('S', 30);
+        prices.put('S', 20);
         prices.put('T', 20);
         prices.put('U', 40);
         prices.put('V', 50);
         prices.put('W', 20);
-        prices.put('X', 90);
-        prices.put('Y', 10);
-        prices.put('Z', 50);
+        prices.put('X', 17);
+        prices.put('Y', 20);
+        prices.put('Z', 21);
 
         offers = new HashMap<>();
         offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
         offers.put('B', List.of(new Offer(2, 45)));
         offers.put('F', List.of(new Offer(3, 20)));
         offers.put('H', List.of(new Offer(10, 80), new Offer(5, 45)));
-        offers.put('K', List.of(new Offer(2, 150)));
+        offers.put('K', List.of(new Offer(2, 120)));
         offers.put('P', List.of(new Offer(5, 200)));
         offers.put('Q', List.of(new Offer(3, 80)));
         offers.put('U', List.of(new Offer(4, 120)));
@@ -87,6 +57,9 @@ public class CheckoutSolution {
         freeItemOffers.put('E', new FreeItemOffer(2, 'B'));
         freeItemOffers.put('N', new FreeItemOffer(3, 'M'));
         freeItemOffers.put('R', new FreeItemOffer(3, 'Q'));
+
+        groupBuy = new HashSet<>();
+        groupBuy.addAll(List.of('S','T','X','Y','Z'));
     }
 
     public Integer checkout(String skus) {
@@ -97,6 +70,9 @@ public class CheckoutSolution {
             if(!prices.containsKey(stock)) return -1;
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
+
+        //
+        basketStockCount.entrySet().stream().filter(entry -> groupBuy.contains(entry.getKey())).collect(Collectors.toCollection());
 
         // calculate free Items and remove from stock count
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
@@ -142,3 +118,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
