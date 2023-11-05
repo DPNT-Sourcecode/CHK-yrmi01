@@ -50,9 +50,12 @@ public class CheckoutSolution {
                 int fullPriceQuantity = count % offerCount;
 
                 total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
+            } else {
+                total += (count * price);
             }
         }
 
         return total;
     }
 }
+

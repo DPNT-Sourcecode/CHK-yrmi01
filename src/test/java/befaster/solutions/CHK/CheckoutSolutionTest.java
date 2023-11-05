@@ -1,6 +1,5 @@
 package befaster.solutions.CHK;
 
-import befaster.solutions.SUM.SumSolution;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,20 +15,13 @@ class CheckoutSolutionTest {
         checkoutSolution = new CheckoutSolution();
     }
 
-    //    | Item | Price | Special offers |
-//+------+-------+----------------+
-//| A    | 50    | 3A for 130     |
-//| B    | 30    | 2B for 45      |
-//| C    | 20    |                |
-//| D    | 15    |                |
-
     @Test
     void checkoutReturnsExpectedValueForSingleItemWithoutOfferTest() {
-//        assertThat(checkoutSolution.checkout("A"), equalTo(50));
-//        assertThat(checkoutSolution.checkout("B"), equalTo(30));
+        assertThat(checkoutSolution.checkout("A"), equalTo(50));
+        assertThat(checkoutSolution.checkout("B"), equalTo(30));
         assertThat(checkoutSolution.checkout("C"), equalTo(20));
-//        assertThat(checkoutSolution.checkout("D"), equalTo(15));
-//        assertThat(checkoutSolution.checkout("ABCD"), equalTo(115));
+        assertThat(checkoutSolution.checkout("D"), equalTo(15));
+        assertThat(checkoutSolution.checkout("ABCD"), equalTo(115));
     }
 
     @Test
@@ -48,3 +40,4 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("AAABB"), equalTo(175));
     }
 }
+
