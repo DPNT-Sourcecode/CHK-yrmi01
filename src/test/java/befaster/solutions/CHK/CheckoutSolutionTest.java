@@ -52,8 +52,8 @@ class CheckoutSolutionTest {
 
     @Test
     void checkoutReturnsExpectedValueForFreeItemsTest() {
-        assertThat(checkoutSolution.checkout("B"), equalTo(30));
-        assertThat(checkoutSolution.checkout("BE"), equalTo(70));
+//        assertThat(checkoutSolution.checkout("B"), equalTo(30));
+//        assertThat(checkoutSolution.checkout("BE"), equalTo(70));
         assertThat(checkoutSolution.checkout("BEE"), equalTo(80));
     }
 
@@ -67,6 +67,11 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("B"), equalTo(30));
         assertThat(checkoutSolution.checkout("BE"), equalTo(70));
         assertThat(checkoutSolution.checkout("BEE"), equalTo(80));
-        assertThat(checkoutSolution.checkout("BBEE"), equalTo(80));
+        assertThat(checkoutSolution.checkout("BBEE"), equalTo(110));
+        assertThat(checkoutSolution.checkout("EEEEBB"), equalTo(160));
+        assertThat(checkoutSolution.checkout("BEBEEE"), equalTo(160));
+        assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(160));
+
     }
 }
+

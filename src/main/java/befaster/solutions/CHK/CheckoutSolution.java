@@ -51,7 +51,7 @@ public class CheckoutSolution {
             int count = entry.getValue();
             if (freeItemOffers.containsKey(entry.getKey())) {
                 FreeItemOffer freeItemOffer = freeItemOffers.get(entry.getKey());
-                if(count > freeItemOffer.getCount()) {
+                if(count >= freeItemOffer.getCount()) {
                     if(basketStockCount.containsKey(freeItemOffer.getFreeItem())) {
                         basketStockCount.put(
                                 freeItemOffer.getFreeItem(),
@@ -90,5 +90,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
