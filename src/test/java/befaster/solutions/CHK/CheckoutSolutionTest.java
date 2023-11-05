@@ -24,6 +24,15 @@ class CheckoutSolutionTest {
 //| D    | 15    |                |
 
     @Test
+    void checkoutReturnsExpectedValueForSingleItemWithoutOfferTest() {
+//        assertThat(checkoutSolution.checkout("A"), equalTo(50));
+//        assertThat(checkoutSolution.checkout("B"), equalTo(30));
+        assertThat(checkoutSolution.checkout("C"), equalTo(20));
+//        assertThat(checkoutSolution.checkout("D"), equalTo(15));
+//        assertThat(checkoutSolution.checkout("ABCD"), equalTo(115));
+    }
+
+    @Test
     void checkoutReturnsExpectedValueForSingleItemWithOfferTest() {
         assertThat(checkoutSolution.checkout("A"), equalTo(50));
         assertThat(checkoutSolution.checkout("AA"), equalTo(100));
@@ -39,4 +48,3 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("AAABB"), equalTo(175));
     }
 }
-
