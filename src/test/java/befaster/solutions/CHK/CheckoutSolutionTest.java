@@ -70,6 +70,3 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("BBEE"), equalTo(80));
     }
 }
-
-
-
