@@ -10,7 +10,7 @@ public class CheckoutSolution {
     private Map<Character, Integer> prices;
     private Map<Character, List<Offer>> offers;
     private Map<Character, FreeItemOffer> freeItemOffers;
-    private Set<Character> groupBuy;
+    private Map<Character, Integer> weightedGroupBuy;
 
 
     public CheckoutSolution() {
@@ -58,9 +58,14 @@ public class CheckoutSolution {
         freeItemOffers.put('N', new FreeItemOffer(3, 'M'));
         freeItemOffers.put('R', new FreeItemOffer(3, 'Q'));
 
-        groupBuy = new HashSet<>();
-        groupBuy.addAll(List.of('S','T','X','Y','Z'));
+        weightedGroupBuy = new HashMap<>();
+        weightedGroupBuy.put('S', 20);
+        weightedGroupBuy.put('T', 20);
+        weightedGroupBuy.put('X', 17);
+        weightedGroupBuy.put('Y', 20);
+        weightedGroupBuy.put('Z', 21);
     }
+
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basketStockCount = new HashMap<>();
@@ -72,14 +77,12 @@ public class CheckoutSolution {
         }
 
         //
-        Map<Character, Integer> eligibleForGroupBuy =
-                basketStockCount.entrySet().stream()
-                        .filter(entry -> groupBuy.contains(entry.getKey()))
-                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        List<Map.Entry<Character, Integer>> collect = basketStockCount.entrySet().stream()
+                .filter(entry -> weightedGroupBuy.containsKey(entry.getKey()))
+                .sorted(Map.Entry.comparingByValue())
+                .toList();
+        int groupSizeCount = 0;
 
-        if(eligibleForGroupBuy.size() > 3) {
-
-        }
 
 
         // calculate free Items and remove from stock count
@@ -126,5 +129,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
