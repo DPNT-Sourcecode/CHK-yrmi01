@@ -76,15 +76,28 @@ public class CheckoutSolution {
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
 
-        //
         List<Map.Entry<Character, Integer>> collect = basketStockCount.entrySet().stream()
                 .filter(entry -> weightedGroupBuy.containsKey(entry.getKey()))
                 .sorted(Map.Entry.comparingByValue())
                 .toList();
-        int groupSizeCount = 0;
 
+        List<Character> groupedList = new ArrayList<>();
         for(Map.Entry<Character, Integer> entry: collect) {
-            
+            for (int i = 0; i < entry.getValue(); i++) {
+                groupedList.add(entry.getKey());
+                if(groupedList.size() > 3) break;
+            }
+        }
+
+        if(groupedList.size() >= 3) {
+            groupedList.forEach(character -> {
+                if(basketStockCount.containsKey(character)) {
+                    basketStockCount.put(
+                            character,
+                            basketStockCount.get(character) - 1
+                    );
+                }
+            });
         }
 
 
@@ -132,6 +145,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
