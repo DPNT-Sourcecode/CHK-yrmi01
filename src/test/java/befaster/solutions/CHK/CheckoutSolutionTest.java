@@ -60,6 +60,7 @@ class CheckoutSolutionTest {
     @Test
     void whenFreeItemPromoButFreeItemNotPurchased() {
         assertThat(checkoutSolution.checkout("EE"), equalTo(80));
+        assertThat(checkoutSolution.checkout("EEEE"), equalTo(160));
     }
 
     @Test
@@ -70,8 +71,9 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("BBEE"), equalTo(110));
         assertThat(checkoutSolution.checkout("EEEEBB"), equalTo(160));
         assertThat(checkoutSolution.checkout("BEBEEE"), equalTo(160));
-        assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(160));
+        assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(265));
 
     }
 }
+
 

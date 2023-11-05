@@ -55,7 +55,7 @@ public class CheckoutSolution {
                     if(basketStockCount.containsKey(freeItemOffer.getFreeItem())) {
                         basketStockCount.put(
                                 freeItemOffer.getFreeItem(),
-                                basketStockCount.get(freeItemOffer.getFreeItem()) - 1
+                                basketStockCount.get(freeItemOffer.getFreeItem()) - count/freeItemOffer.getCount()
                         );
                     }
                 }
@@ -90,6 +90,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
