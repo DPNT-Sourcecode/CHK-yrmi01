@@ -154,8 +154,3 @@ public class CheckoutSolution {
         return groupCost * groups;
     }
 }
-
-
-
-
-
