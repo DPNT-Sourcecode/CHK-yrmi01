@@ -78,10 +78,13 @@ public class CheckoutSolution {
 
         for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
             int freeItemPrice = prices.get(entry.getKey());
-            total -= (freeItemPrice * entry.getValue());
+            if(basketStockCount.containsKey(entry.getKey())) {
+                total -= (freeItemPrice * entry.getValue());
+            }
         }
 
         return total;
     }
 }
+
 
