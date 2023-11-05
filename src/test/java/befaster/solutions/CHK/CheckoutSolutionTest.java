@@ -102,11 +102,16 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("STZ"), equalTo(45));
         assertThat(checkoutSolution.checkout("STYZ"), equalTo(65));
         assertThat(checkoutSolution.checkout("STXSTX"), equalTo(90));
-        assertThat(checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"), equalTo(90));
-        assertThat(checkoutSolution.checkout("STXSTX"), equalTo(90));
+        assertThat(
+                checkoutSolution.checkout("ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+                equalTo(1602));
+        assertThat(
+                checkoutSolution.checkout("LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH"),
+                equalTo(1602));
     }
 
 }
+
 
 
 
