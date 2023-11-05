@@ -1,9 +1,6 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
-
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
@@ -77,31 +74,7 @@ public class CheckoutSolution {
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
 
-        List<Map.Entry<Character, Integer>> collect = basketStockCount.entrySet().stream()
-                .filter(entry -> weightedGroupBuy.containsKey(entry.getKey()))
-                .sorted((o2, o1) -> weightedGroupBuy.get(o1.getKey()).compareTo(weightedGroupBuy.get(o2.getKey())))
-                .toList();
-
-        List<Character> groupedList = new ArrayList<>();
-        for(Map.Entry<Character, Integer> entry: collect) {
-            if(groupedList.size() >= 3) break;
-            for (int i = 0; i < entry.getValue(); i++) {
-                if(groupedList.size() >= 3) break;
-                groupedList.add(entry.getKey());
-            }
-        }
-
-        if(groupedList.size() == 3) {
-            groupedList.forEach(character -> {
-                if(basketStockCount.containsKey(character)) {
-                    basketStockCount.put(
-                            character,
-                            basketStockCount.get(character) - 1
-                    );
-                }
-            });
-            total += 45;
-        }
+        total += calculateGroupBuy(basketStockCount);
 
 
         // calculate free Items and remove from stock count
@@ -146,7 +119,42 @@ public class CheckoutSolution {
 
         return total;
     }
+
+    private int calculateGroupBuy(Map<Character, Integer> basketStockCount) {
+        int groupSize = 3;
+        int groupCost = 45;
+
+        List<Map.Entry<Character, Integer>> collect = basketStockCount.entrySet().stream()
+                .filter(entry -> weightedGroupBuy.containsKey(entry.getKey()))
+                .sorted((o2, o1) -> weightedGroupBuy.get(o1.getKey()).compareTo(weightedGroupBuy.get(o2.getKey())))
+                .toList();
+
+
+        List<Character> groupedList = new ArrayList<>();
+
+        for(Map.Entry<Character, Integer> entry: collect) {
+            for (int i = 0; i < entry.getValue(); i++) {
+                groupedList.add(entry.getKey());
+            }
+        }
+
+        int groups = groupedList.size() / groupSize;
+        int remainder = groupedList.size() % groupSize;
+
+        if(groupedList.size() >= groupSize) {
+            groupedList.stream().limit(groupedList.size() - remainder).forEach(character -> {
+                if(basketStockCount.containsKey(character)) {
+                    basketStockCount.put(
+                            character,
+                            basketStockCount.get(character) - 1
+                    );
+                }
+            });
+        }
+        return groupCost * groups;
+    }
 }
+
 
 
 
