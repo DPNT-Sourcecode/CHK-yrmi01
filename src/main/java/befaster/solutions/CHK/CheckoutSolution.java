@@ -57,12 +57,15 @@ public class CheckoutSolution {
                         int offerCount = offer.getCount();
                         if(count >= offerCount) {
                             int offerQuantity = count / offerCount;
-                            int fullPriceQuantity = count % offerCount;
 
                             if (offer.getFreeItem() != null) {
                                 freeItems.put(offer.getFreeItem(), offerQuantity);
                             }
-                            total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
+                            total += (offerQuantity * offerPrice);
+                            count -= offerQuantity;
+                        } else {
+                            total += (count * price);
+                            count = 0;
                         }
                     }
                 } else {
@@ -81,5 +84,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
