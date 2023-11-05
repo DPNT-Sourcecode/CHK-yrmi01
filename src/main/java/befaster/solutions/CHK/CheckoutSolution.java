@@ -79,8 +79,7 @@ public class CheckoutSolution {
 
         List<Map.Entry<Character, Integer>> collect = basketStockCount.entrySet().stream()
                 .filter(entry -> weightedGroupBuy.containsKey(entry.getKey()))
-                .sorted((item,quantity) -> weightedGroupBuy.get(item))
-//                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .sorted((o2, o1) -> weightedGroupBuy.get(o1.getKey()).compareTo(weightedGroupBuy.get(o2.getKey())))
                 .toList();
 
         List<Character> groupedList = new ArrayList<>();
@@ -148,6 +147,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
