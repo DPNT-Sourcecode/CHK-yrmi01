@@ -97,10 +97,10 @@ class CheckoutSolutionTest {
 
     @Test
     void checkoutReturnsExpectedValueForGroupBuy() {
-//        assertThat(checkoutSolution.checkout("STY"), equalTo(45));
+        assertThat(checkoutSolution.checkout("STY"), equalTo(45));
+        assertThat(checkoutSolution.checkout("SSTY"), equalTo(65));
 //        assertThat(checkoutSolution.checkout("STZ"), equalTo(45));
-        assertThat(checkoutSolution.checkout("STYZ"), equalTo(65));
+//        assertThat(checkoutSolution.checkout("STYZ"), equalTo(65));
     }
 
 }
-

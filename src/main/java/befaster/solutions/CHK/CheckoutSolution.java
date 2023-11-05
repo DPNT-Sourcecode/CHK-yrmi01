@@ -86,11 +86,11 @@ public class CheckoutSolution {
         for(Map.Entry<Character, Integer> entry: collect) {
             for (int i = 0; i < entry.getValue(); i++) {
                 groupedList.add(entry.getKey());
-                if(groupedList.size() > 3) break;
+                if(groupedList.size() >= 3) break;
             }
         }
 
-        if(groupedList.size() >= 3) {
+        if(groupedList.size() == 3) {
             groupedList.forEach(character -> {
                 if(basketStockCount.containsKey(character)) {
                     basketStockCount.put(
@@ -146,9 +146,3 @@ public class CheckoutSolution {
         return total;
     }
 }
-
-
-
-
-
-
