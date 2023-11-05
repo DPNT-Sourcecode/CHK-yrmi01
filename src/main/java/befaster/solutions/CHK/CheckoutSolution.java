@@ -49,18 +49,20 @@ public class CheckoutSolution {
             int count = entry.getValue();
             int price = prices.get(entry.getKey());
             if (offers.containsKey(entry.getKey())) {
-                Offer offer = offers.get(entry.getKey());
-                int offerPrice = offer.getPrice();
-                int offerCount = offer.getCount();
+                List<Offer> ItemOffers = offers.get(entry.getKey());
+                for(Offer offer: ItemOffers) {
+                    int offerPrice = offer.getPrice();
+                    int offerCount = offer.getCount();
 
-                int offerQuantity = count / offerCount;
-                int fullPriceQuantity = count % offerCount;
+                    int offerQuantity = count / offerCount;
+                    int fullPriceQuantity = count % offerCount;
 
-                if (offer.getFreeItem() != null) {
-                    freeItems.put(offer.getFreeItem(), offerQuantity);
+                    if (offer.getFreeItem() != null) {
+                        freeItems.put(offer.getFreeItem(), offerQuantity);
+                    }
+
+                    total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
                 }
-
-                total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
             } else {
                 total += (count * price);
             }
@@ -74,6 +76,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
