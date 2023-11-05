@@ -35,10 +35,10 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basketStockCount = new HashMap<>();
+        
 
         for(Character stock: skus.toCharArray()){
             if(!prices.containsKey(stock)) return -1;
-
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
 
@@ -63,5 +63,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
