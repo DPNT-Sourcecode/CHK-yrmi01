@@ -49,11 +49,14 @@ public class CheckoutSolution {
                 int offerQuantity = count / offerCount;
                 int fullPriceQuantity = count % offerCount;
 
-                total += 
+                total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
             }
         }
+
+        return total;
     }
 }
+
 
 
 
