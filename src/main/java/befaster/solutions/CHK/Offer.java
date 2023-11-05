@@ -29,4 +29,3 @@ public class Offer {
         return freeItem;
     }
 }
-
