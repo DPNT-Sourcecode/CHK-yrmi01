@@ -43,12 +43,18 @@ public class CheckoutSolution {
             int price = prices.get(entry.getKey());
             if (offers.containsKey(entry.getKey())) {
                 Offer offer = offers.get(entry.getKey());
-                
+                int offerPrice = offer.getPrice();
+                int offerCount = offer.getCount();
 
+                int offerQuantity = count / offerCount;
+                int fullPriceQuantity = count % offerCount;
+
+                total += 
             }
         }
     }
 }
+
 
 
 
