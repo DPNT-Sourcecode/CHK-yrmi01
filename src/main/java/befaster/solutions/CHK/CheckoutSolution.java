@@ -21,6 +21,8 @@ public class CheckoutSolution {
     //| D    | 15    |                        |
     //| E    | 40    | 2E get one B free      |
     //+------+-------+------------------------+
+    //| F    | 10    | 2F get one F free      |
+
     public CheckoutSolution() {
         prices = new HashMap<>();
         prices.put('A', 50);
@@ -28,6 +30,7 @@ public class CheckoutSolution {
         prices.put('C', 20);
         prices.put('D', 15);
         prices.put('E', 40);
+        prices.put('F', 10);
 
         offers = new HashMap<>();
         offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
@@ -35,6 +38,7 @@ public class CheckoutSolution {
 
         freeItemOffers = new HashMap<>();
         freeItemOffers.put('E', new FreeItemOffer(2, 'B'));
+        freeItemOffers.put('F', new FreeItemOffer(2, 'F'));
     }
 
     public Integer checkout(String skus) {
@@ -90,7 +94,3 @@ public class CheckoutSolution {
         return total;
     }
 }
-
-
-
-

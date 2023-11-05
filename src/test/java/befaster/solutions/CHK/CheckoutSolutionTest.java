@@ -62,9 +62,20 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("EEEEBB"), equalTo(160));
         assertThat(checkoutSolution.checkout("BEBEEE"), equalTo(160));
         assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(280));
+    }
+//    +------+-------+------------------------+
+//| Item | Price | Special offers         |
+//+------+-------+------------------------+
+//| A    | 50    | 3A for 130, 5A for 200 |
+//| B    | 30    | 2B for 45              |
+//| C    | 20    |                        |
+//| D    | 15    |                        |
+//| E    | 40    | 2E get one B free      |
+//| F    | 10    | 2F get one F free      |
+//+------+-------+------------------------+
 
+    @Test
+    void checkoutReturnsExpectedValueForSelfFreeItemsTest() {
+        assertThat(checkoutSolution.checkout("B"), equalTo(30));
     }
 }
-
-
-
