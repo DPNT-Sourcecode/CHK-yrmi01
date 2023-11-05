@@ -40,20 +40,10 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("AAABB"), equalTo(175));
     }
 
-    //+------+-------+------------------------+
-    //| Item | Price | Special offers         |
-    //+------+-------+------------------------+
-    //| A    | 50    | 3A for 130, 5A for 200 |
-    //| B    | 30    | 2B for 45              |
-    //| C    | 20    |                        |
-    //| D    | 15    |                        |
-    //| E    | 40    | 2E get one B free      |
-    //+------+-------+------------------------+
-
     @Test
     void checkoutReturnsExpectedValueForFreeItemsTest() {
-//        assertThat(checkoutSolution.checkout("B"), equalTo(30));
-//        assertThat(checkoutSolution.checkout("BE"), equalTo(70));
+        assertThat(checkoutSolution.checkout("B"), equalTo(30));
+        assertThat(checkoutSolution.checkout("BE"), equalTo(70));
         assertThat(checkoutSolution.checkout("BEE"), equalTo(80));
     }
 
@@ -71,9 +61,10 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("BBEE"), equalTo(110));
         assertThat(checkoutSolution.checkout("EEEEBB"), equalTo(160));
         assertThat(checkoutSolution.checkout("BEBEEE"), equalTo(160));
-        assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(265));
+        assertThat(checkoutSolution.checkout("ABCDEABCDE"), equalTo(280));
 
     }
 }
+
 
 
