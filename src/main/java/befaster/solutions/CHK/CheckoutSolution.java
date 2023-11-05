@@ -66,15 +66,12 @@ public class CheckoutSolution {
                             }
                             total += (offerQuantity * offerPrice);
                             count -= offerCount * offerQuantity;
-                        } else {
-                            total += (count * price);
-                            count = 0;
                         }
                     }
-                } else {
-                    total += (count * price);
-                    count = 0;
                 }
+
+                total += (count * price);
+                count = 0;
             }
 
         }
@@ -87,3 +84,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
