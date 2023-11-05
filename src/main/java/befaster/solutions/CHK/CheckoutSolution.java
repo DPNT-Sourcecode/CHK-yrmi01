@@ -49,7 +49,6 @@ public class CheckoutSolution {
             int count = entry.getValue();
             int price = prices.get(entry.getKey());
 
-//            while(count > 0) {
                 if (offers.containsKey(entry.getKey())) {
                     List<Offer> ItemOffers = offers.get(entry.getKey());
                     for(Offer offer: ItemOffers) {
@@ -68,7 +67,6 @@ public class CheckoutSolution {
                 } else {
                     total += (count * price);
                 }
-//            }
         }
 
         for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
@@ -79,3 +77,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
