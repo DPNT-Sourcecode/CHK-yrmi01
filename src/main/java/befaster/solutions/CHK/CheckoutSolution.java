@@ -3,12 +3,13 @@ package befaster.solutions.CHK;
 import befaster.runner.SolutionNotImplementedException;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
 
     private Map<Character, Integer> prices;
-    private Map<Character, Offer> offers;
+    private Map<Character, List<Offer>> offers;
 
     //+------+-------+------------------------+
     //| Item | Price | Special offers         |
@@ -28,9 +29,9 @@ public class CheckoutSolution {
         prices.put('E', 40);
 
         offers = new HashMap<>();
-        offers.put('A', new Offer(3, 130));
-        offers.put('B', new Offer(2, 45));
-        offers.put('E', new Offer(2, 80, 'B'));
+        offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
+        offers.put('B', List.of(new Offer(2, 45)));
+        offers.put('E', List.of(new Offer(2, 80, 'B')));
     }
 
     public Integer checkout(String skus) {
@@ -73,6 +74,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
