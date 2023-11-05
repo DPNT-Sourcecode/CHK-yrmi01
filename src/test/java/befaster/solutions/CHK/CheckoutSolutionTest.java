@@ -76,6 +76,12 @@ class CheckoutSolutionTest {
 
     @Test
     void checkoutReturnsExpectedValueForSelfFreeItemsTest() {
-        assertThat(checkoutSolution.checkout("B"), equalTo(30));
+        assertThat(checkoutSolution.checkout("F"), equalTo(10));
+        assertThat(checkoutSolution.checkout("FF"), equalTo(20));
+        assertThat(checkoutSolution.checkout("FFF"), equalTo(20));
+        assertThat(checkoutSolution.checkout("FFFF"), equalTo(30));
+        assertThat(checkoutSolution.checkout("FFFFF"), equalTo(40));
+        assertThat(checkoutSolution.checkout("FFFFFF"), equalTo(40));
     }
 }
+

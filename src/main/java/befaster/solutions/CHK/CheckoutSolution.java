@@ -35,10 +35,10 @@ public class CheckoutSolution {
         offers = new HashMap<>();
         offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
         offers.put('B', List.of(new Offer(2, 45)));
+        offers.put('F', List.of(new Offer(3, 20)));
 
         freeItemOffers = new HashMap<>();
         freeItemOffers.put('E', new FreeItemOffer(2, 'B'));
-        freeItemOffers.put('F', new FreeItemOffer(2, 'F'));
     }
 
     public Integer checkout(String skus) {
@@ -94,3 +94,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
