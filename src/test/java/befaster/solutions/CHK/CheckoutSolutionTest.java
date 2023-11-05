@@ -83,4 +83,24 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("FFFFF"), equalTo(40));
         assertThat(checkoutSolution.checkout("FFFFFF"), equalTo(40));
     }
+
+//    | R    | 50    | 3R get one Q free               |
+//| S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+//| T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+//| U    | 40    | 3U get one U free               |
+//| V    | 50    | 2V for 90, 3V for 130           |
+//| W    | 20    |                                 |
+//| X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
+//| Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+//| Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+//+------+-------+---------------------------------+
+
+    @Test
+    void checkoutReturnsExpectedValueForGroupBuy() {
+//        assertThat(checkoutSolution.checkout("STY"), equalTo(45));
+//        assertThat(checkoutSolution.checkout("STZ"), equalTo(45));
+        assertThat(checkoutSolution.checkout("STYZ"), equalTo(65));
+    }
+
 }
+

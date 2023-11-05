@@ -69,6 +69,7 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basketStockCount = new HashMap<>();
+        int total = 0;
 
 
         for(Character stock: skus.toCharArray()){
@@ -98,6 +99,7 @@ public class CheckoutSolution {
                     );
                 }
             });
+            total += 45;
         }
 
 
@@ -117,7 +119,6 @@ public class CheckoutSolution {
             }
         }
 
-        int total = 0;
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
             int count = entry.getValue();
             int price = prices.get(entry.getKey());
@@ -145,6 +146,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
