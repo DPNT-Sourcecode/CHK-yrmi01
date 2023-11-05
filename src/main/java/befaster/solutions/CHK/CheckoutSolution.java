@@ -32,10 +32,16 @@ public class CheckoutSolution {
         Map<Character, Integer> basketStockCount = new HashMap<>();
 
         for(Character stock: skus.toCharArray()){
+            basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
+        }
+
+        int total = 0;
+        for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
             
         }
     }
 }
+
 
 
 
