@@ -35,7 +35,8 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basketStockCount = new HashMap<>();
-        
+        Map<Character, Integer> freeItems = new HashMap<>();
+
 
         for(Character stock: skus.toCharArray()){
             if(!prices.containsKey(stock)) return -1;
@@ -54,15 +55,25 @@ public class CheckoutSolution {
                 int offerQuantity = count / offerCount;
                 int fullPriceQuantity = count % offerCount;
 
+                if (offer.getFreeItem() != null) {
+                    freeItems.put(offer.getFreeItem(), offerQuantity);
+                }
+
                 total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
             } else {
                 total += (count * price);
             }
         }
 
+        for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
+            int freeItemPrice = prices.get(entry.getKey());
+            total -= (freeItemPrice * entry.getValue());
+        }
+
         return total;
     }
 }
+
 
 
 
