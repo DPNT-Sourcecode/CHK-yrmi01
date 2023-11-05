@@ -10,22 +10,27 @@ public class CheckoutSolution {
     private Map<Character, Integer> prices;
     private Map<Character, Offer> offers;
 
-//    | Item | Price | Special offers |
-//+------+-------+----------------+
-//| A    | 50    | 3A for 130     |
-//| B    | 30    | 2B for 45      |
-//| C    | 20    |                |
-//| D    | 15    |                |
+    //+------+-------+------------------------+
+    //| Item | Price | Special offers         |
+    //+------+-------+------------------------+
+    //| A    | 50    | 3A for 130, 5A for 200 |
+    //| B    | 30    | 2B for 45              |
+    //| C    | 20    |                        |
+    //| D    | 15    |                        |
+    //| E    | 40    | 2E get one B free      |
+    //+------+-------+------------------------+
     public CheckoutSolution() {
         prices = new HashMap<>();
         prices.put('A', 50);
         prices.put('B', 30);
         prices.put('C', 20);
         prices.put('D', 15);
+        prices.put('E', 40);
 
         offers = new HashMap<>();
         offers.put('A', new Offer(3, 130));
         offers.put('B', new Offer(2, 45));
+        offers.put('E', new Offer(2, 80, 'B'));
     }
 
     public Integer checkout(String skus) {
@@ -58,4 +63,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
