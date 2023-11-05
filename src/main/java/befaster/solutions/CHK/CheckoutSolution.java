@@ -72,7 +72,15 @@ public class CheckoutSolution {
         }
 
         //
-        basketStockCount.entrySet().stream().filter(entry -> groupBuy.contains(entry.getKey())).collect(Collectors.toCollection());
+        Map<Character, Integer> eligibleForGroupBuy =
+                basketStockCount.entrySet().stream()
+                        .filter(entry -> groupBuy.contains(entry.getKey()))
+                        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        if(eligibleForGroupBuy.size() > 3) {
+
+        }
+
 
         // calculate free Items and remove from stock count
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
@@ -118,4 +126,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
