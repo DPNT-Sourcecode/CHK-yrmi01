@@ -71,7 +71,7 @@ public class CheckoutSolution {
         prices.put('X', 90);
         prices.put('Y', 10);
         prices.put('Z', 50);
-        
+
         offers = new HashMap<>();
         offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
         offers.put('B', List.of(new Offer(2, 45)));
@@ -142,5 +142,6 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
