@@ -32,15 +32,24 @@ public class CheckoutSolution {
         Map<Character, Integer> basketStockCount = new HashMap<>();
 
         for(Character stock: skus.toCharArray()){
+            if(!prices.containsKey(stock)) return -1;
+
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
 
         int total = 0;
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
-            
+            int count = entry.getValue();
+            int price = prices.get(entry.getKey());
+            if (offers.containsKey(entry.getKey())) {
+                Offer offer = offers.get(entry.getKey());
+                
+
+            }
         }
     }
 }
+
 
 
 
