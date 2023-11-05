@@ -8,7 +8,7 @@ import java.util.Map;
 public class CheckoutSolution {
 
     private Map<Character, Integer> prices;
-    private Map<Character, Integer> offers;
+    private Map<Character, Offer> offers;
 
 //    | Item | Price | Special offers |
 //+------+-------+----------------+
@@ -23,12 +23,19 @@ public class CheckoutSolution {
         prices.put('C', 20);
         prices.put('D', 15);
 
-
+        offers = new HashMap<>();
+        offers.put('A', new Offer(3, 130));
+        offers.put('B', new Offer(2, 45));
     }
 
     public Integer checkout(String skus) {
-        throw new SolutionNotImplementedException();
+        Map<Character, Integer> basketStockCount = new HashMap<>();
+
+        for(Character stock: skus.toCharArray()){
+            
+        }
     }
 }
+
 
 
