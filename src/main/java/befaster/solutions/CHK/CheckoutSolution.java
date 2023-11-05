@@ -48,24 +48,27 @@ public class CheckoutSolution {
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
             int count = entry.getValue();
             int price = prices.get(entry.getKey());
-            if (offers.containsKey(entry.getKey())) {
-                List<Offer> ItemOffers = offers.get(entry.getKey());
-                for(Offer offer: ItemOffers) {
-                    int offerPrice = offer.getPrice();
-                    int offerCount = offer.getCount();
 
-                    int offerQuantity = count / offerCount;
-                    int fullPriceQuantity = count % offerCount;
+//            while(count > 0) {
+                if (offers.containsKey(entry.getKey())) {
+                    List<Offer> ItemOffers = offers.get(entry.getKey());
+                    for(Offer offer: ItemOffers) {
+                        int offerPrice = offer.getPrice();
+                        int offerCount = offer.getCount();
 
-                    if (offer.getFreeItem() != null) {
-                        freeItems.put(offer.getFreeItem(), offerQuantity);
+                        int offerQuantity = count / offerCount;
+                        int fullPriceQuantity = count % offerCount;
+
+                        if (offer.getFreeItem() != null) {
+                            freeItems.put(offer.getFreeItem(), offerQuantity);
+                        }
+
+                        total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
                     }
-
-                    total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
+                } else {
+                    total += (count * price);
                 }
-            } else {
-                total += (count * price);
-            }
+//            }
         }
 
         for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
@@ -76,6 +79,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
