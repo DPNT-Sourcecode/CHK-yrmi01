@@ -10,6 +10,7 @@ public class CheckoutSolution {
 
     private Map<Character, Integer> prices;
     private Map<Character, List<Offer>> offers;
+    private Map<Character, FreeItemOffer> freeItemOffers;
 
     //+------+-------+------------------------+
     //| Item | Price | Special offers         |
@@ -31,7 +32,9 @@ public class CheckoutSolution {
         offers = new HashMap<>();
         offers.put('A', List.of(new Offer(5, 200), new Offer(3, 130)));
         offers.put('B', List.of(new Offer(2, 45)));
-        offers.put('E', List.of(new Offer(2, 80, 'B')));
+
+        freeItemOffers = new HashMap<>();
+        freeItemOffers.put('E', new FreeItemOffer(2, 'B'));
     }
 
     public Integer checkout(String skus) {
@@ -42,6 +45,20 @@ public class CheckoutSolution {
         for(Character stock: skus.toCharArray()){
             if(!prices.containsKey(stock)) return -1;
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
+        }
+
+        // calculate free Items
+        for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
+            int count = entry.getValue();
+            if (freeItemOffers.containsKey(entry.getKey())) {
+                FreeItemOffer freeItemOffer = freeItemOffers.get(entry.getKey());
+                if(count > freeItemOffer.getCount()) {
+                    freeItems.put(
+                            freeItemOffer.getFreeItem(),
+                            freeItems.getOrDefault(freeItemOffer.getFreeItem(), 0) + count / freeItemOffer.getCount()
+                    );
+                }
+            }
         }
 
         int total = 0;
@@ -57,13 +74,6 @@ public class CheckoutSolution {
                         int offerCount = offer.getCount();
                         if(count >= offerCount) {
                             int offerQuantity = count / offerCount;
-
-                            if (offer.getFreeItem() != null) {
-                                freeItems.put(
-                                        offer.getFreeItem(),
-                                        freeItems.getOrDefault(offer.getFreeItem(), 0) + offerQuantity
-                                );
-                            }
                             total += (offerQuantity * offerPrice);
                             count -= offerCount * offerQuantity;
                         }
@@ -86,3 +96,4 @@ public class CheckoutSolution {
         return total;
     }
 }
+
