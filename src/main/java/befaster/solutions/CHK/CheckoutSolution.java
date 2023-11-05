@@ -39,7 +39,6 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
         Map<Character, Integer> basketStockCount = new HashMap<>();
-        Map<Character, Integer> freeItems = new HashMap<>();
 
 
         for(Character stock: skus.toCharArray()){
@@ -47,16 +46,18 @@ public class CheckoutSolution {
             basketStockCount.put(stock, basketStockCount.getOrDefault(stock, 0) + 1);
         }
 
-        // calculate free Items
+        // calculate free Items and remove from stock count
         for(Map.Entry<Character, Integer> entry: basketStockCount.entrySet()) {
             int count = entry.getValue();
             if (freeItemOffers.containsKey(entry.getKey())) {
                 FreeItemOffer freeItemOffer = freeItemOffers.get(entry.getKey());
                 if(count > freeItemOffer.getCount()) {
-                    freeItems.put(
-                            freeItemOffer.getFreeItem(),
-                            freeItems.getOrDefault(freeItemOffer.getFreeItem(), 0) + count / freeItemOffer.getCount()
-                    );
+                    if(basketStockCount.containsKey(freeItemOffer.getFreeItem())) {
+                        basketStockCount.put(
+                                freeItemOffer.getFreeItem(),
+                                basketStockCount.get(freeItemOffer.getFreeItem()) - 1
+                        );
+                    }
                 }
             }
         }
@@ -86,14 +87,8 @@ public class CheckoutSolution {
 
         }
 
-        for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
-            int freeItemPrice = prices.get(entry.getKey());
-            if(basketStockCount.containsKey(entry.getKey())) {
-                total -= (freeItemPrice * entry.getValue());
-            }
-        }
-
         return total;
     }
 }
+
 
