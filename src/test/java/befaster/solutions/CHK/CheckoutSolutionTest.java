@@ -67,8 +67,9 @@ class CheckoutSolutionTest {
         assertThat(checkoutSolution.checkout("B"), equalTo(30));
         assertThat(checkoutSolution.checkout("BE"), equalTo(70));
         assertThat(checkoutSolution.checkout("BEE"), equalTo(80));
-        assertThat(checkoutSolution.checkout("EE"), equalTo(80));
+        assertThat(checkoutSolution.checkout("BBEE"), equalTo(80));
     }
 }
+
 
 
