@@ -49,24 +49,28 @@ public class CheckoutSolution {
             int count = entry.getValue();
             int price = prices.get(entry.getKey());
 
+            while (count > 0) {
                 if (offers.containsKey(entry.getKey())) {
                     List<Offer> ItemOffers = offers.get(entry.getKey());
                     for(Offer offer: ItemOffers) {
                         int offerPrice = offer.getPrice();
                         int offerCount = offer.getCount();
+                        if(count >= offerCount) {
+                            int offerQuantity = count / offerCount;
+                            int fullPriceQuantity = count % offerCount;
 
-                        int offerQuantity = count / offerCount;
-                        int fullPriceQuantity = count % offerCount;
-
-                        if (offer.getFreeItem() != null) {
-                            freeItems.put(offer.getFreeItem(), offerQuantity);
+                            if (offer.getFreeItem() != null) {
+                                freeItems.put(offer.getFreeItem(), offerQuantity);
+                            }
+                            total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
                         }
-
-                        total += (offerQuantity * offerPrice) + (fullPriceQuantity * price);
                     }
                 } else {
                     total += (count * price);
+                    count = 0;
                 }
+            }
+
         }
 
         for(Map.Entry<Character, Integer> entry: freeItems.entrySet()) {
@@ -77,4 +81,5 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
