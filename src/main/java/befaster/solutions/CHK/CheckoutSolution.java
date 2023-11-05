@@ -83,6 +83,9 @@ public class CheckoutSolution {
                 .toList();
         int groupSizeCount = 0;
 
+        for(Map.Entry<Character, Integer> entry: collect) {
+            
+        }
 
 
         // calculate free Items and remove from stock count
@@ -129,6 +132,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
