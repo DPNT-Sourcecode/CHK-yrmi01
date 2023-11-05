@@ -89,11 +89,12 @@ public class CheckoutSolution {
                                 String freeItem = offer.getFreeItem();
                                 freeItemsCount.put(freeItem, freeItemsCount.getOrDefault(freeItem, 0) + eligibleOffers);
                             }
-                        } else {
-                            total += quantity * price;
-                            quantity = 0;
                         }
                     }
+                }
+                if(quantity > 0) {
+                    total += quantity * price;
+                    quantity = 0;
                 }
             }
         }
@@ -107,6 +108,3 @@ public class CheckoutSolution {
         return total;
     }
 }
-
-
-
