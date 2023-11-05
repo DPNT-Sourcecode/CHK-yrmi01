@@ -61,7 +61,7 @@ public class CheckoutSolution {
                             if (offer.getFreeItem() != null) {
                                 freeItems.put(
                                         offer.getFreeItem(),
-                                        freeItems.getOrDefault(entry.getKey(), 0) + offerQuantity
+                                        freeItems.getOrDefault(offer.getFreeItem(), 0) + offerQuantity
                                 );
                             }
                             total += (offerQuantity * offerPrice);
@@ -87,6 +87,7 @@ public class CheckoutSolution {
         return total;
     }
 }
+
 
 
 
